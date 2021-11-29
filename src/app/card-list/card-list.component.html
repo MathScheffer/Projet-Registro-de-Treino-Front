@@ -1,0 +1,6 @@
+<h2>Escolha o dia que deseja registrar abaixo</h2>
+<div>
+    <ul  class="card-list">
+        <li *ngFor='let dia of dias'><card-rotina [nome]="dia" [link]="caminho_rotina"></card-rotina></li>
+    </ul>
+</div>

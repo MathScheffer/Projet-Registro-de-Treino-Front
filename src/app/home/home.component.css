@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 60%;
+    margin: 0 auto;
+    position: relative;
+    
+}
+
+h1{
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+
+h1,h2{
+    text-align: center;
+}
+
