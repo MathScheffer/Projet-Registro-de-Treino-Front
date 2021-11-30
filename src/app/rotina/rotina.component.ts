@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RotinaService } from '../service/rotina.service';
 
 @Component({
   selector: 'rotina',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RotinaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private rotinaService: RotinaService) { }
 
+  nome!:string;
+  
   ngOnInit(): void {
+    this.nome = this.rotinaService.getDia();
   }
 
 }

@@ -12,7 +12,7 @@ const routes: Routes = [
   {path:'home', component: HomeComponent, 
     children:[
       {path:'rotina', component: RotinaComponent, data:{ animation: 'isLeft' }},
-      {path:'cards', component: CardListComponent, data:{ animation: 'isRight' }}
+      {path:'', component: CardListComponent, data:{ animation: 'isRight' }}
     ], data:{ animation: 'isLeft' }},
   {path:'', redirectTo:'/home', pathMatch:'full'},
   {path:'right', component:RightComponent, data:{ animation: 'isRight' }},
