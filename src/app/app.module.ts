@@ -12,6 +12,8 @@ import { CardListComponent } from './card-list/card-list.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { LeftComponent } from './left/left.component';
 import { RightComponent } from './right/right.component';
+import { ExercicioCardComponent } from './exercicio-card/exercicio-card.component';
+import { TransformExercicioPipePipe } from './pipe/transform-exercicio-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { RightComponent } from './right/right.component';
     CardRotinaComponent,
     CardListComponent,
     LeftComponent,
-    RightComponent
+    RightComponent,
+    ExercicioCardComponent,
+    TransformExercicioPipePipe
   ],
   imports: [
     BrowserModule,

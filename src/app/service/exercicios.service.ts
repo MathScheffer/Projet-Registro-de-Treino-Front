@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ExercicioDTO } from '../model/ExercicioDTO';
-import { RotinaDTO } from '../model/RotinaDTO';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RotinaService {
-  dia:string = ""
-  rotina: RotinaDTO[] = [
+export class ExerciciosService {
+
+  exercicios = [
     {
       "_id": "61a41164b357bd056ca4d386",
       "usuario": "619acab894f91f3a28f24e90",
@@ -163,32 +161,17 @@ export class RotinaService {
     ]
   },  
   ]
+  constructor() { }
 
-  
-  constructor() { 
-
+  getExercicios(){
+    return this.exercicios;
   }
 
-  setDia(dia:string){
-    this.dia = dia
-  }
-
-  getDia():string{
-    return this.dia
-  }
-
-  getRotina(){
-    return this.rotina;
-  }
-
-  getExerciciosDia(dia: string): ExercicioDTO[]{
+  getExerciciosDia(dia: string): object{
     const diaDesejado = this.formatarDia(dia);
 
-    const rotinaDia = this.rotina.filter(r => r.dia == diaDesejado);
-
-    const exercicios: ExercicioDTO[] = rotinaDia[0].exercicios
-    return exercicios;
-    
+    const rotinaDia = this.exercicios.filter(r => r.dia == diaDesejado);
+    return rotinaDia.length == 1 ? rotinaDia[0] : {};
   }
 
   formatarDia(dia: string): string{
