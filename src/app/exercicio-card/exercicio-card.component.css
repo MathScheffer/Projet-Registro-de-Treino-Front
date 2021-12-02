@@ -34,10 +34,16 @@
 .infos-container:last-child{
     display: flex;
 }
+
+
 .salvar{
     background-color: aquamarine;
 }
 
 .limpar {
     background-color: tomato;
+}
+
+.editar{
+    background-color: aqua;
 }

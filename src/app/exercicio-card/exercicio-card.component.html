@@ -16,18 +16,16 @@
 
     <div class="infos-container">
         <label for="cargAl">Carga Alcançada: </label>
-        <input id='cargAl' value={{exercicio.cargaAlcancada}}>
+        <input id='cargAl' value={{exercicio.cargaAlcancada}} [(ngModel)]="exercicio.cargaAlcancada">
     </div>
 
     <div class="infos-container">
         <label for="repF">Repetições Feitas: </label>
-        <input id="repF" value={{exercicio.repeticoesFeitas}}>
+        <input id="repF" value={{exercicio.repeticoesFeitas}} [(ngModel)]="exercicio.repeticoesFeitas" >
     </div>
 
     <div class="infos-container">        
-        
-        <button class="salvar">Salvar Dados</button>
-        <button class="limpar">Limpar Dados</button>
-
+        <button class="salvar botao-alteracao" (click)='salvarTreino()'>Salvar Dados</button>
+        <button class="limpar botao-alteracao" (click)='limparTreino()'>Limpar Dados</button>
     </div>
 </div>

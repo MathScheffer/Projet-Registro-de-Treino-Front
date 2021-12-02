@@ -1,6 +1,9 @@
 
 <h1>Sua rotina!</h1>
 <p>{{nome}}</p>
+
+
+<a routerLink="/home" id="card-nav">Ir para Cards >></a>
 <div class="exercicios-cards-container">
     <exercicio-card *ngFor='let exercicio of exercicios' [exercicio]='exercicio'></exercicio-card>
 </div>

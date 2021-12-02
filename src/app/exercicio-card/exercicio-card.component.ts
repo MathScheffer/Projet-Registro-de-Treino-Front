@@ -16,4 +16,15 @@ export class ExercicioCardComponent implements OnInit {
     
   }
 
+  salvarTreino(){
+    console.log(this.exercicio.cargaAlcancada, this.exercicio.repeticoesFeitas)
+  }
+
+  limparTreino(){
+    this.exercicio.cargaAlcancada = 0;
+    this.exercicio.repeticoesFeitas = 0;
+  }
+
+
+
 }

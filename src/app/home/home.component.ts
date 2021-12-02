@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import {fader, slider//, transformer, stepper
 } from '../route-animations';
 
@@ -12,9 +12,14 @@ import {fader, slider//, transformer, stepper
   ]
 })
 export class HomeComponent implements OnInit {
+  
+
   constructor() { }
 
+  
   ngOnInit(): void {
+    
+
   }
   prepareRoute(outlet: RouterOutlet){
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation']
