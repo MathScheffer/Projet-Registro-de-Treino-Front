@@ -15,7 +15,7 @@ import { RightComponent } from './right/right.component';
 import { ExercicioCardComponent } from './exercicio-card/exercicio-card.component';
 import { TransformExercicioPipePipe } from './pipe/transform-exercicio-pipe.pipe';
 import { FormsModule } from '@angular/forms';
-
+import { HttpClientModule} from '@angular/common/http'
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +34,8 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
