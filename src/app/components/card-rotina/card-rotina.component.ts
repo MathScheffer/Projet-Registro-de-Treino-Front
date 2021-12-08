@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RotinaService } from '../service/rotina.service';
+import { RotinaService } from '../../service/rotina.service';
 
 @Component({
   selector: 'card-rotina',
