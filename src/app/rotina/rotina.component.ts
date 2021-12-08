@@ -29,10 +29,11 @@ export class RotinaComponent implements OnInit {
   }
 
   inicializaUsuario(){
-    this.usuarioService.buscarPorId().subscribe(data=> {
-      this.usuario = data;
-      this.nome = this.rotinaService.getDia();
-    this.exercicios = this.rotinaService.getExerciciosDia(this.nome);
+      this.usuarioService.buscarPorId().subscribe(data=> {
+        this.usuario = data;
+        this.nome = this.rotinaService.getDia();
+        this.rotinaService.setRotina(this.usuario.rotina);
+        this.exercicios = this.rotinaService.getExerciciosDia(this.nome);
 
     })
   }

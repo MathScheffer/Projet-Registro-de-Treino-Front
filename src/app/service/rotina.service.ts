@@ -7,7 +7,7 @@ import { RotinaDTO } from '../model/RotinaDTO';
 })
 export class RotinaService {
   dia:string = ""
-  rotina: RotinaDTO[] = [
+/*   rotina: RotinaDTO[] = [
     {
       "_id": "61a41164b357bd056ca4d386",
       "usuario": "619acab894f91f3a28f24e90",
@@ -162,8 +162,11 @@ export class RotinaService {
         }
     ]
   },  
-  ]
+  ] */
 
+  
+  rotina!: RotinaDTO[]
+  
   
   constructor() { 
 
@@ -177,6 +180,10 @@ export class RotinaService {
     return this.dia
   }
 
+  setRotina(rotina:RotinaDTO[]){
+    this.rotina = rotina;
+  }
+  
   getRotina(){
     return this.rotina;
   }
