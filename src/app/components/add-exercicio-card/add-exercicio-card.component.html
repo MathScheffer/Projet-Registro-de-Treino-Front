@@ -1,0 +1,25 @@
+<div class="container" >
+    <div  class="container">
+        <div class="infos-container">
+            <label for="nome">Nome: </label>
+            <input id="nome" [(ngModel)]="nome" (ngModelChange) = 'onChange($event)'>
+        </div>
+    
+        <div class="infos-container">
+            <label for="carga">Carga: </label>
+            <input id="carga"[(ngModel)]="carga">
+        </div>
+    
+        <div class="infos-container">
+            <label for="rep">Repetições: </label>
+            <input id="rep" [(ngModel)]="repeticoes">
+        </div>
+        <div class="infos-container">
+            <label for="rep">Serie: </label>
+            <input id="rep" [(ngModel)]="series">
+        </div>
+        <div class="infos-container">        
+            <button class="salvar botao-alteracao" (click)='salvarTreino()'>Salvar Dados</button>
+        </div>
+    </div>
+</div>

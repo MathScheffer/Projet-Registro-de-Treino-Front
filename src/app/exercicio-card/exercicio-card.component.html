@@ -1,26 +1,33 @@
-<div class="container">
+<div *ngIf=' exercicio && exercicio._id' class="container">
+    <button class="deletar" (click)="excluirTreino()">X</button>
+
     <div class="infos-container">
-        <label for="nome">Nome: </label>
+        <label >Nome: </label>
         <input id="nome" value={{exercicio.nome}} disabled>
     </div>
 
     <div class="infos-container">
-        <label for="carga">Carga: </label>
+        <label >Carga: </label>
         <input id="carga" value={{exercicio.carga}} disabled>
     </div>
 
     <div class="infos-container">
-        <label for="rep">Repetições: </label>
+        <label >Repetições: </label>
         <input id="rep" value={{exercicio.repeticoes}} disabled>
     </div>
 
     <div class="infos-container">
-        <label for="cargAl">Carga Alcançada: </label>
+        <label >Serie: </label>
+        <input id="serie" value={{exercicio.series}} disabled>
+    </div>
+
+    <div class="infos-container">
+        <label >Carga Alcançada: </label>
         <input id='cargAl' value={{exercicio.cargaAlcancada}} [(ngModel)]="exercicio.cargaAlcancada">
     </div>
 
     <div class="infos-container">
-        <label for="repF">Repetições Feitas: </label>
+        <label >Repetições Feitas: </label>
         <input id="repF" value={{exercicio.repeticoesFeitas}} [(ngModel)]="exercicio.repeticoesFeitas" >
     </div>
 
