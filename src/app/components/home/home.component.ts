@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import {fader, slider//, transformer, stepper
-} from '../route-animations';
+} from '../../route-animations';
 
 @Component({
   selector: 'home',

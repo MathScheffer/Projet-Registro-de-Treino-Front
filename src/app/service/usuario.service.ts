@@ -21,7 +21,7 @@ export class UsuarioService {
 
   buscarPorId(): Observable<UsuarioDTO>{
     const uri = apiUri+id;
-
+    console.log(uri)
     return this.http.get<UsuarioDTO>(uri);
   }
 

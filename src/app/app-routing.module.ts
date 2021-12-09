@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CardListComponent } from './card-list/card-list.component';
-import { HomeComponent } from './home/home.component';
+import { CardListComponent } from './components/card-list/card-list.component';
+import { HomeComponent } from './components/home/home.component';
 import { LeftComponent } from './left/left.component';
 import { LoginComponent } from './login/login.component';
 import { RightComponent } from './right/right.component';

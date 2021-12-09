@@ -6,4 +6,5 @@
 <a routerLink="/home" id="card-nav">Ir para Cards >></a>
 <div class="exercicios-cards-container">
     <exercicio-card *ngFor='let exercicio of exercicios' [exercicio]='exercicio'></exercicio-card>
+    <add-exercicio-card [idRotina]="rotina._id" (addExercicio)='incrementarExercicio($event)'></add-exercicio-card>
 </div>

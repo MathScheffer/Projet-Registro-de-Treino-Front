@@ -1,175 +1,52 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { RotinaConstants } from '../constants/RotinaConstants';
+import { Exercicio } from '../model/Exercicio';
 import { ExercicioDTO } from '../model/ExercicioDTO';
 import { RotinaDTO } from '../model/RotinaDTO';
+
+const httpOptions = RotinaConstants.baseHttpOptions;
+const baseUri = RotinaConstants.BASE_URI_ROTINAS;
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class RotinaService {
   dia:string = ""
-/*   rotina: RotinaDTO[] = [
-    {
-      "_id": "61a41164b357bd056ca4d386",
-      "usuario": "619acab894f91f3a28f24e90",
-      "dia": "Segunda",
-      "exercicios": [
-          {
-              "cargaAlcancada": 0,
-              "repeticoesFeitas": 0,
-              "_id": "61a41164b357bd056ca4d387",
-              "nome": "Rosca Direta",
-              "carga": 10,
-              "repeticoes": 10
-          },
-          {
-              "cargaAlcancada": 0,
-              "repeticoesFeitas": 0,
-              "_id": "61a4282db5266209fcfb3d5c",
-              "nome": "Superman",
-              "carga": 10,
-              "repeticoes": 10
-          },
-          {
-              "cargaAlcancada": 0,
-              "repeticoesFeitas": 0,
-              "_id": "61a4283cb5266209fcfb3d61",
-              "nome": "Rosca Scott",
-              "carga": 10,
-              "repeticoes": 10
-          }
-      ]
-  },
-      {
-        "_id": "61a41164b357bd056ca4d386",
-        "usuario": "619acab894f91f3a28f24e90",
-        "dia": "Terça",
-        "exercicios": [
-            {
-                "cargaAlcancada": 0,
-                "repeticoesFeitas": 0,
-                "_id": "61a41164b357bd056ca4d387",
-                "nome": "Agachamento Livre",
-                "carga": 10,
-                "repeticoes": 10
-            },
-            {
-                "cargaAlcancada": 0,
-                "repeticoesFeitas": 0,
-                "_id": "61a4282db5266209fcfb3d5c",
-                "nome": "Legpress",
-                "carga": 10,
-                "repeticoes": 10
-            },
-            {
-                "cargaAlcancada": 0,
-                "repeticoesFeitas": 0,
-                "_id": "61a4283cb5266209fcfb3d61",
-                "nome": "Cici",
-                "carga": 10,
-                "repeticoes": 10
-            }
-        ]
-    },
-    {
-      "_id": "61a41164b357bd056ca4d386",
-      "usuario": "619acab894f91f3a28f24e90",
-      "dia": "Quarta",
-      "exercicios": [
-          {
-              "cargaAlcancada": 0,
-              "repeticoesFeitas": 0,
-              "_id": "61a41164b357bd056ca4d387",
-              "nome": "Supino Reto",
-              "carga": 10,
-              "repeticoes": 10
-          },
-          {
-              "cargaAlcancada": 0,
-              "repeticoesFeitas": 0,
-              "_id": "61a4282db5266209fcfb3d5c",
-              "nome": "Supino Inclinado",
-              "carga": 10,
-              "repeticoes": 10
-          },
-          {
-              "cargaAlcancada": 0,
-              "repeticoesFeitas": 0,
-              "_id": "61a4283cb5266209fcfb3d61",
-              "nome": "Voador",
-              "carga": 10,
-              "repeticoes": 10
-          }
-      ]
-  },
-  {
-    "_id": "61a41164b357bd056ca4d386",
-    "usuario": "619acab894f91f3a28f24e90",
-    "dia": "Quinta",
-    "exercicios": [
-        {
-            "cargaAlcancada": 0,
-            "repeticoesFeitas": 0,
-            "_id": "61a41164b357bd056ca4d387",
-            "nome": "Triceps na Corda",
-            "carga": 10,
-            "repeticoes": 10
-        },
-        {
-            "cargaAlcancada": 0,
-            "repeticoesFeitas": 0,
-            "_id": "61a4282db5266209fcfb3d5c",
-            "nome": "Tríceps Testa",
-            "carga": 10,
-            "repeticoes": 10
-        },
-        {
-            "cargaAlcancada": 0,
-            "repeticoesFeitas": 0,
-            "_id": "61a4283cb5266209fcfb3d61",
-            "nome": "Francês",
-            "carga": 10,
-            "repeticoes": 10
-        }
-    ]
-  },    {
-    "_id": "61a41164b357bd056ca4d386",
-    "usuario": "619acab894f91f3a28f24e90",
-    "dia": "Sexta",
-    "exercicios": [
-        {
-            "cargaAlcancada": 0,
-            "repeticoesFeitas": 0,
-            "_id": "61a41164b357bd056ca4d387",
-            "nome": "Barra Livre",
-            "carga": 10,
-            "repeticoes": 10
-        },
-        {
-            "cargaAlcancada": 0,
-            "repeticoesFeitas": 0,
-            "_id": "61a4282db5266209fcfb3d5c",
-            "nome": "Puxada Frontal",
-            "carga": 10,
-            "repeticoes": 10
-        },
-        {
-            "cargaAlcancada": 0,
-            "repeticoesFeitas": 0,
-            "_id": "61a4283cb5266209fcfb3d61",
-            "nome": "Remada Curvada",
-            "carga": 10,
-            "repeticoes": 10
-        }
-    ]
-  },  
-  ] */
 
-  
   rotina!: RotinaDTO[]
   
-  
-  constructor() { 
+  constructor(private http: HttpClient) { 
 
+  }
+
+  adicionarExercicio(id_rotina: string, body: Exercicio): Observable<any>{
+    const uri = baseUri + id_rotina + '/exercicio/adicionar'
+    console.log(uri)
+    return this.http.put<any>(uri, body, httpOptions);
+  }
+
+  alterarRegistro(id:string, body: ExercicioDTO): Observable<ExercicioDTO>{
+    const uri = `${baseUri}exercicio/${id}/registrar`
+
+    const obj = {
+      cargaAlcancada: body.cargaAlcancada,
+      repeticoesFeitas: body.repeticoesFeitas
+    }
+
+    return this.http.put<ExercicioDTO>(uri, obj, httpOptions);
+  }
+
+  excluirExercicio(id:string): Observable<ExercicioDTO>{
+    const uri = baseUri + 'exercicio/' + id;
+    console.log(uri)
+    return this.http.delete<ExercicioDTO>(baseUri + 'exercicio/' + id ,httpOptions)
+  }
+
+  buscarExercicio(id: string): Observable<ExercicioDTO>{ 
+    return this.http.get<ExercicioDTO>(baseUri + 'exercicio/' + id, httpOptions)
   }
 
   setDia(dia:string){
@@ -186,6 +63,12 @@ export class RotinaService {
   
   getRotina(){
     return this.rotina;
+  }
+
+  getRotinaDia(dia: string): RotinaDTO{
+    const diaDesejado = this.formatarDia(dia) ? this.formatarDia(dia) : dia;
+
+    return this.rotina.filter(r => r.dia == diaDesejado)[0];
   }
 
   getExerciciosDia(dia: string): ExercicioDTO[]{
