@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import { RotinaConstants } from '../constants/RotinaConstants';
 import { Exercicio } from '../model/Exercicio';
 import { ExercicioDTO } from '../model/ExercicioDTO';
+import { Rotina } from '../model/Rotina';
 import { RotinaDTO } from '../model/RotinaDTO';
+import { Utils } from '../utils/Utils';
 
 const httpOptions = RotinaConstants.baseHttpOptions;
 const baseUri = RotinaConstants.BASE_URI_ROTINAS;
@@ -20,6 +22,10 @@ export class RotinaService {
   
   constructor(private http: HttpClient) { 
 
+  }
+
+  adicionarRotina(body: Rotina): Observable<RotinaDTO>{
+    return this.http.post<RotinaDTO>(baseUri,body ,httpOptions);
   }
 
   adicionarExercicio(id_rotina: string, body: Exercicio): Observable<any>{
@@ -66,40 +72,18 @@ export class RotinaService {
   }
 
   getRotinaDia(dia: string): RotinaDTO{
-    const diaDesejado = this.formatarDia(dia) ? this.formatarDia(dia) : dia;
+    const diaDesejado = Utils.formatarDia(dia) ? Utils.formatarDia(dia) : dia;
 
     return this.rotina.filter(r => r.dia == diaDesejado)[0];
   }
 
   getExerciciosDia(dia: string): ExercicioDTO[]{
-    const diaDesejado = this.formatarDia(dia);
+    const diaDesejado = Utils.formatarDia(dia);
 
     const rotinaDia = this.rotina.filter(r => r.dia == diaDesejado);
 
     const exercicios: ExercicioDTO[] = rotinaDia[0].exercicios
     return exercicios;
     
-  }
-
-  formatarDia(dia: string): string{
-    switch(dia){
-      case "SEG":
-        return "Segunda";
-        break;
-      case "TER":
-        return "Terça";
-        break;
-      case "QUA":
-        return "Quarta";
-        break;
-      case "QUI":
-        return "Quinta";
-        break;
-      case "SEX":
-        return "Sexta";
-        break;
-      default:
-        return "";
-    }
   }
 }
