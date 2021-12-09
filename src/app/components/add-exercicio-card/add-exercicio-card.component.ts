@@ -52,33 +52,33 @@ export class AddExercicioCardComponent implements OnInit {
         cargaAlcancada: 0,
         repeticoesFeitas: 0
       } 
-   }
     
-   console.log(this.exercicio)
-    if(this.idRotina){
-      this.rotinaService.adicionarExercicio(this.idRotina,this.exercicio).subscribe(data=>{
-        this.addExercicio.emit(data.novo_exercicio);
-      });
-      
-    }else{
-      const dia = Utils.formatarDia(this.rotinaService.getDia());
-      console.log('sem id da rotina para o dia  '+dia)
-
-      const newRotina: Rotina = {
-        dia: dia,
-        exercicios: [this.exercicio],
-        usuario: this.usuarioService.getId()
-      }
-      
-      console.log(this.exercicio)
-      this.rotinaService.adicionarRotina(newRotina).subscribe(data => {
-        const rotinaId: RotinaId = {rotina: data._id};
+    console.log(this.exercicio)
+      if(this.idRotina){
+        this.rotinaService.adicionarExercicio(this.idRotina,this.exercicio).subscribe(data=>{
+          this.addExercicio.emit(data.novo_exercicio);
+        });
         
-        this.usuarioService.incrementarRotina(rotinaId).subscribe(user => {
-          this.addExercicio.emit(user);
-        }) 
-      })
+      }else{
+        const dia = Utils.formatarDia(this.rotinaService.getDia());
+        console.log('sem id da rotina para o dia  '+dia)
 
+        const newRotina: Rotina = {
+          dia: dia,
+          exercicios: [this.exercicio],
+          usuario: this.usuarioService.getId()
+        }
+        
+        console.log(this.exercicio)
+        this.rotinaService.adicionarRotina(newRotina).subscribe(data => {
+          const rotinaId: RotinaId = {rotina: data._id};
+          
+          this.usuarioService.incrementarRotina(rotinaId).subscribe(user => {
+            this.addExercicio.emit(user);
+          }) 
+        })
+
+      }
     }
 
   }
